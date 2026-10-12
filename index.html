@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanto Store | Pokémon TCG Bolivia - Singles & Sellados</title>
+  <meta name="description" content="El primer ecommerce especializado en cartas coleccionables Pokémon TCG en Bolivia. Catálogo organizado por expansión, rareza, idioma y graduación de estado transparente.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            poke: {
+              red: '#EE1515',
+              'red-dark': '#B80D0D',
+              yellow: '#FFDE00',
+              gold: '#B3A125',
+              blue: '#3B4CCA',
+              dark: '#0B0F19',
+              card: '#111827',
+              border: '#1F2937'
+            }
+          },
+          backgroundImage: {
+            'holo-gradient': 'linear-gradient(135deg, rgba(238,21,21,0.15) 0%, rgba(255,222,0,0.12) 50%, rgba(59,76,202,0.15) 100%)',
+            'radial-glow': 'radial-gradient(circle at 50% 20%, rgba(238, 21, 21, 0.18), transparent 70%)',
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 5s ease-in-out infinite',
+            'shimmer': 'shimmer 2.5s infinite linear',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Efecto holográfico para cartas */
+    .holo-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .holo-card::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.12) 35%, rgba(255, 222, 0, 0.18) 45%, rgba(238, 21, 21, 0.15) 55%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .holo-card:hover::after {
+      opacity: 1;
+      animation: holoShine 1.8s ease-in-out infinite;
+    }
+    @keyframes holoShine {
+      0% { transform: translate(-20%, -20%) rotate(0deg); }
+      50% { transform: translate(15%, 15%) rotate(5deg); }
+      100% { transform: translate(-20%, -20%) rotate(0deg); }
+    }
+    .glow-red {
+      box-shadow: 0 0 35px -5px rgba(238, 21, 21, 0.35);
+    }
+    .glow-yellow {
+      box-shadow: 0 0 30px -5px rgba(255, 222, 0, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-poke-dark text-slate-100 font-sans antialiased selection:bg-poke-red selection:text-white min-h-screen flex flex-col">
+
+  <!-- Barra de Notificación Superior -->
+  <div class="bg-gradient-to-r from-poke-red-dark via-poke-red to-red-600 text-xs py-1.5 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2 border-b border-red-500/20">
+    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-white text-poke-red">BOLIVIA</span>
+    <span>Envíos a los 9 departamentos por flota o courier • Pagos con QR Simple sin comisiones adicionales</span>
+    <span class="hidden md:inline text-red-200">| Próximo restock: Scarlet & Violet Surging Sparks</span>
+  </div>
+
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-poke-dark/85 border-b border-slate-800/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logotipo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-poke-red to-red-700 flex items-center justify-center shadow-lg shadow-poke-red/25 group-hover:scale-105 transition-transform">
+            <!-- Icono Pokéball estilizado -->
+            <div class="w-8 h-8 rounded-full border-2 border-white relative overflow-hidden flex flex-col justify-between">
+              <div class="bg-white h-1/2 w-full"></div>
+              <div class="bg-slate-900 h-1/2 w-full"></div>
+              <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-slate-950"></div>
+              <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-slate-950"></div>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-poke-yellow bg-clip-text text-transparent">
+              KANTO<span class="text-poke-red">.STORE</span>
+            </span>
+            <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">Pokémon TCG Bolivia</span>
+          </div>
+        </a>
+
+        <!-- Menú de Enlaces Desktop -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+          <a href="#catalogo" class="hover:text-poke-yellow transition-colors flex items-center gap-1.5">
+            <i data-lucide="layers" class="w-4 h-4 text-poke-yellow"></i>
+            Catálogo Singles
+          </a>
+          <a href="#caracteristicas" class="hover:text-poke-yellow transition-colors flex items-center gap-1.5">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            Condición Garantizada
+          </a>
+          <a href="#wishlist-section" class="hover:text-poke-yellow transition-colors flex items-center gap-1.5">
+            <i data-lucide="heart" class="w-4 h-4 text-poke-red"></i>
+            Lista de Deseos
+          </a>
+          <a href="#comparativa" class="hover:text-poke-yellow transition-colors flex items-center gap-1.5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-blue-400"></i>
+            ¿Por qué Kanto?
+          </a>
+        </nav>
+
+        <!-- Botones de Acción / Wishlist -->
+        <div class="hidden sm:flex items-center gap-4">
+          <!-- Botón Wishlist con Contador dinámico -->
+          <button onclick="toggleWishlistModal()" class="relative p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-poke-red hover:border-poke-red/40 transition-all flex items-center gap-2 text-sm" title="Tu lista de deseos">
+            <i data-lucide="bookmark" class="w-4 h-4 text-poke-yellow"></i>
+            <span class="hidden lg:inline text-xs font-semibold">Wishlist</span>
+            <span id="wishlist-badge" class="bg-poke-red text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+          </button>
+
+          <!-- CTA Primario -->
+          <a href="#catalogo" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-poke-red to-red-600 hover:from-red-500 hover:to-poke-red text-white shadow-lg shadow-poke-red/25 hover:shadow-poke-red/40 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+            <span>Explorar Cartas</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Botón Menú Móvil -->
+        <div class="flex sm:hidden items-center gap-2">
+          <button onclick="toggleWishlistModal()" class="p-2 text-slate-300">
+            <i data-lucide="bookmark" class="w-5 h-5 text-poke-yellow"></i>
+          </button>
+          <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menú Desplegable Móvil -->
+    <div id="mobile-menu" class="hidden sm:hidden border-b border-slate-800 bg-slate-950/95 px-4 pt-3 pb-6 space-y-3">
+      <a href="#catalogo" onclick="closeMobileMenu()" class="block py-2 text-base font-semibold text-slate-200 hover:text-poke-yellow">Catálogo de Singles</a>
+      <a href="#caracteristicas" onclick="closeMobileMenu()" class="block py-2 text-base font-semibold text-slate-200 hover:text-poke-yellow">Graduación y Estado</a>
+      <a href="#wishlist-section" onclick="closeMobileMenu()" class="block py-2 text-base font-semibold text-slate-200 hover:text-poke-yellow">Lista de Deseos</a>
+      <a href="#comparativa" onclick="closeMobileMenu()" class="block py-2 text-base font-semibold text-slate-200 hover:text-poke-yellow">Seguridad vs Redes</a>
+      <a href="#catalogo" onclick="closeMobileMenu()" class="mt-3 block w-full text-center py-3 bg-poke-red rounded-xl font-bold text-white shadow-lg">Ver Todas las Cartas</a>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 1: HERO SECTION -->
+  <section id="hero" class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-radial-glow">
+    <!-- Elementos Decorativos de Fondo -->
+    <div class="absolute -top-40 right-10 w-96 h-96 bg-poke-red/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 left-0 w-80 h-80 bg-poke-yellow/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-72 h-72 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Columna Izquierda: Copywriting y CTAs -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Pill de Confianza / Ubicación -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-semibold text-slate-300 shadow-sm animate-pulse-slow">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Plataforma Líder en Bolivia • Cartas 100% Auténticas</span>
+            <i data-lucide="sparkle" class="w-3.5 h-3.5 text-poke-yellow"></i>
+          </div>
+
+          <!-- Título Principal -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15]">
+            Tu colección de <br>
+            <span class="bg-gradient-to-r from-poke-yellow via-amber-300 to-poke-red bg-clip-text text-transparent">Pokémon TCG</span> 
+            sin sorpresas ni riesgos.
+          </h1>
+
+          <!-- Subtítulo con propuesta de valor clara -->
+          <p class="text-base sm:text-lg text-slate-300/90 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            El primer ecommerce boliviano con <strong>catálogo centralizado de singles y cajas selladas</strong>. Clasificación transparente bajo estándares internacionales (<span class="text-emerald-400 font-semibold">Near Mint</span>, <span class="text-amber-400 font-semibold">LP</span>), lista de deseos inteligente y pagos locales inmediatos con <strong>QR Simple</strong>.
+          </p>
+
+          <!-- Botones de Acción (CTAs) -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#catalogo" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-base bg-poke-red hover:bg-red-600 text-white shadow-xl shadow-poke-red/30 hover:shadow-poke-red/50 transition-all flex items-center justify-center gap-3 transform hover:-translate-y-1">
+              <i data-lucide="search" class="w-5 h-5"></i>
+              <span>Explorar Catálogo</span>
+            </a>
+            
+            <a href="#ofertas" class="w-full sm:w-auto px-7 py-4 rounded-xl font-bold text-base bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-poke-yellow/60 transition-all flex items-center justify-center gap-2">
+              <i data-lucide="tag" class="w-5 h-5 text-poke-yellow"></i>
+              <span>Ver Ofertas de la Semana</span>
+            </a>
+          </div>
+
+          <!-- Métricas Rápidas / Social Proof Local -->
+          <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
+            <div>
+              <p class="text-2xl sm:text-3xl font-black text-white">+1,200</p>
+              <p class="text-xs text-slate-400">Singles Verificadas</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-black text-poke-yellow">100%</p>
+              <p class="text-xs text-slate-400">Fotos de Estado Real</p>
+            </div>
+            <div>
+              <p class="text-2xl sm:text-3xl font-black text-emerald-400">9 Deptos.</p>
+              <p class="text-xs text-slate-400">Cobertura en Bolivia</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Showcase Visual / Holographic Card Experience -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <!-- Brillo de fondo para la carta -->
+          <div class="absolute inset-0 bg-gradient-to-tr from-poke-red/20 via-poke-yellow/20 to-blue-500/20 rounded-3xl blur-2xl transform rotate-6 scale-95"></div>
+          
+          <!-- Contenedor Carta Principal Animada -->
+          <div class="relative w-full max-w-sm holo-card bg-slate-900/90 p-5 rounded-3xl border border-slate-700/80 shadow-2xl glow-red animate-float">
+            
+            <!-- Header de la Carta Simulación -->
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-3 h-3 rounded-full bg-poke-red"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Carta Destacada #006</span>
+              </div>
+              <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-950 text-emerald-400 border border-emerald-800/60">
+                NM (Near Mint)
+              </span>
+            </div>
+
+            <!-- Imagen / Arte de la Carta -->
+            <div class="my-4 relative rounded-2xl overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900 border border-slate-800 aspect-[3/4] flex items-center justify-center group">
+              <!-- Arte simulado de Charizard ex SAR con CSS & SVG -->
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(238,21,21,0.3),transparent_70%)]"></div>
+              
+              <div class="relative z-10 text-center p-4">
+                <div class="w-24 h-24 mx-auto mb-3 rounded-full bg-gradient-to-tr from-amber-500 via-poke-red to-purple-600 p-1 shadow-lg shadow-poke-red/40 flex items-center justify-center">
+                  <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
+                    <i data-lucide="flame" class="w-12 h-12 text-amber-400 animate-pulse"></i>
+                  </div>
+                </div>
+                <h3 class="text-xl font-extrabold text-white">Charizard ex</h3>
+                <p class="text-xs font-semibold text-poke-yellow uppercase tracking-widest mt-0.5">Special Illustration Rare (SAR)</p>
+                <p class="text-[11px] text-slate-400 mt-1">Expansión: Scarlet & Violet - 151 (MEW #199)</p>
+
+                <!-- Tags de Atributos -->
+                <div class="flex flex-wrap items-center justify-center gap-1.5 mt-3">
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">🇺🇸 Inglés</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-300">Foil / Holo</span>
+                  <span class="text-[10px] px-2 py-0.5 rounded bg-purple-900/60 text-purple-300 border border-purple-700/40">Ultra Rara</span>
+                </div>
+              </div>
+
+              <!-- Badge Flotante de Graduación de Esquinas -->
+              <div class="absolute bottom-3 left-3 bg-slate-950/90 backdrop-blur-md px-2.5 py-1 rounded-lg border border-slate-800 text-[10px] text-slate-300 flex items-center gap-1">
+                <i data-lucide="check-circle" class="w-3 h-3 text-emerald-400"></i>
+                Centrado: 9.5 | Bordes: Impecables
+              </div>
+            </div>
+
+            <!-- Footer de la Carta con Precio en Bolivianos -->
+            <div class="pt-2 flex items-center justify-between">
+              <div>
+                <p class="text-[11px] text-slate-400 font-medium">Precio en Bolivia:</p>
+                <p class="text-2xl font-black text-white">
+                  Bs. 840 <span class="text-xs font-normal text-slate-400">BOB</span>
+                </p>
+              </div>
+              <button onclick="addToWishlist('Charizard ex (151 SAR)', 840)" class="px-4 py-2.5 rounded-xl bg-poke-yellow hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-md transition-all">
+                <i data-lucide="bookmark-plus" class="w-4 h-4"></i>
+                <span>Añadir a Wishlist</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Micro Badge Flotante "Pago QR Disponible" -->
+          <div class="absolute -bottom-5 -left-4 sm:left-4 bg-slate-900/95 border border-slate-700/80 rounded-2xl p-3 shadow-xl backdrop-blur-md flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <i data-lucide="qr-code" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <p class="text-xs font-bold text-white">Cobro con QR Simple</p>
+              <p class="text-[10px] text-slate-400">BNB, BCP, Mercantil, Unión</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: CARACTERÍSTICAS / MÓDULOS PRINCIPALES -->
+  <section id="caracteristicas" class="py-20 bg-slate-950 relative border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Título de la sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase tracking-widest text-poke-yellow font-bold bg-amber-950/40 border border-amber-800/40 px-3 py-1 rounded-full">
+          Diseñado para Coleccionistas Exigentes
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          La experiencia que el coleccionismo en Bolivia merecía
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Despedite de buscar en cientos de comentarios desordenados en Facebook. Centralizamos la oferta de Pokémon TCG con herramientas profesionales de e-commerce.
+        </p>
+      </div>
+
+      <!-- Grid de 4 Columnas con los Módulos Requeridos -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Módulo 1: Catálogo de Singles -->
+        <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 hover:border-poke-yellow/50 transition-all group hover:-translate-y-1.5 duration-300">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-poke-yellow flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-poke-yellow transition-colors">
+            Catálogo de Singles Filtrable
+          </h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2.5 leading-relaxed">
+            Filtra en segundos por <strong>expansión</strong> (Paldea, 151, Crown Zenith), <strong>rareza</strong> (SAR, Alt Art, Secreta) e <strong>idioma</strong> (Inglés o Japonés original).
+          </p>
+          <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Búsqueda por número de set</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Stock en tiempo real</li>
+          </ul>
+        </div>
+
+        <!-- Módulo 2: Estado Transparente -->
+        <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all group hover:-translate-y-1.5 duration-300">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
+            Graduación y Estado Claro
+          </h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2.5 leading-relaxed">
+            Sin ambigüedades de "está 10/10". Cada carta cuenta con fotos de esquinas, centrado y clasificación estándar internacional: <strong>Mint, Near Mint, LP o MP</strong>.
+          </p>
+          <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Guía visual de desgaste</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Fotos en luz blanca neutra</li>
+          </ul>
+        </div>
+
+        <!-- Módulo 3: Lista de Deseos (Wishlist) -->
+        <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 hover:border-poke-red/50 transition-all group hover:-translate-y-1.5 duration-300">
+          <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 text-poke-red flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="bell-ring" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-poke-red transition-colors">
+            Lista de Deseos (Wishlist)
+          </h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2.5 leading-relaxed">
+            Marca las "Chase Cards" que te faltan para completar tu Master Set. Recibe avisos prioritarios cuando un vendedor o la tienda reponga la carta.
+          </p>
+          <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Alertas por WhatsApp / Correo</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Estimación de presupuesto</li>
+          </ul>
+        </div>
+
+        <!-- Módulo 4: Pagos Flexibles Bolivia -->
+        <div class="bg-slate-900/80 rounded-2xl p-6 border border-slate-800 hover:border-blue-500/50 transition-all group hover:-translate-y-1.5 duration-300">
+          <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="wallet-cards" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
+            Pagos Locales & Flexibles
+          </h3>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2.5 leading-relaxed">
+            Diseñado 100% para Bolivia. Aceptamos <strong>QR Simple interoperable</strong> de cualquier entidad financiera, transferencia bancaria y <strong>contra entrega</strong> en puntos autorizados.
+          </p>
+          <ul class="mt-4 space-y-1.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Envíos por flota o encomienda</li>
+            <li class="flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Embalaje reforzado con Toploader</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: VISTA PREVIA DE CARTAS Y PRODUCTOS (CATÁLOGO DESTACADO) -->
+  <section id="catalogo" class="py-20 bg-poke-dark relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Encabezado con Filtros Dinámicos -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-poke-red font-bold">Catálogo Destacado</span>
+          <h2 class="text-3xl font-extrabold text-white mt-1">Explora las cartas más codiciadas</h2>
+          <p class="text-slate-400 text-sm mt-1">Precios en Bolivianos (Bs.) con disponibilidad verificada.</p>
+        </div>
+
+        <!-- Filtros Tabulados (JS Interactivo) -->
+        <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-xl" id="filter-container">
+          <button onclick="filterCards('all')" class="filter-btn active px-4 py-2 rounded-lg text-xs font-bold transition-all bg-poke-red text-white">
+            Todas
+          </button>
+          <button onclick="filterCards('sar')" class="filter-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white">
+            Ultra Raras / SAR
+          </button>
+          <button onclick="filterCards('sealed')" class="filter-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white">
+            Sellados & Cajas
+          </button>
+          <button onclick="filterCards('jp')" class="filter-btn px-4 py-2 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white">
+            Japonés (JP)
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuadrícula de Cartas (Grid de Cards) -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="cards-grid">
+        
+        <!-- CARTA 1: Charizard ex -->
+        <div class="card-item sar holo-card bg-slate-900 rounded-2xl border border-slate-800 p-4 flex flex-col justify-between group hover:border-slate-700 transition-all">
+          <div>
+            <!-- Header de Card -->
+            <div class="flex items-center justify-between text-[11px] mb-3">
+              <span class="bg-amber-500/10 text-poke-yellow border border-amber-500/20 font-bold px-2 py-0.5 rounded">
+                Obsidian Flames #223
+              </span>
+              <span class="bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-800/40">
+                Near Mint (NM)
+              </span>
+            </div>
+
+            <!-- Imagen / Mockup Visual -->
+            <div class="relative bg-slate-950 rounded-xl p-6 text-center overflow-hidden mb-4 border border-slate-800/80">
+              <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-amber-600 to-red-600 flex items-center justify-center text-white shadow-lg mb-2">
+                <i data-lucide="flame" class="w-10 h-10"></i>
+              </div>
+              <p class="text-xs font-extrabold text-white">Charizard ex</p>
+              <p class="text-[10px] text-poke-yellow font-semibold">Special Illustration Rare</p>
+              <div class="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
+                <span>🇺🇸 Inglés</span> • <span>Holo Foil</span>
+              </div>
+            </div>
+
+            <!-- Descripción rápida -->
+            <p class="text-xs text-slate-400 line-clamp-2">
+              Centrado 9.5/10. Conservada en sleeve Dragon Shield y toploader ultra pro.
+            </p>
+          </div>
+
+          <!-- Precio y CTA -->
+          <div class="pt-4 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-500">Precio unitario:</p>
+              <p class="text-lg font-black text-white">Bs. 540</p>
+            </div>
+            <button onclick="addToWishlist('Charizard ex SAR', 540)" class="p-2.5 rounded-xl bg-slate-800 hover:bg-poke-red text-slate-300 hover:text-white transition-colors" title="Añadir a lista de deseos">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTA 2: Iono SAR -->
+        <div class="card-item sar holo-card bg-slate-900 rounded-2xl border border-slate-800 p-4 flex flex-col justify-between group hover:border-slate-700 transition-all">
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-3">
+              <span class="bg-purple-500/10 text-purple-300 border border-purple-500/20 font-bold px-2 py-0.5 rounded">
+                Paldea Evolved #269
+              </span>
+              <span class="bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-800/40">
+                Gem Mint (GM 10)
+              </span>
+            </div>
+
+            <div class="relative bg-slate-950 rounded-xl p-6 text-center overflow-hidden mb-4 border border-slate-800/80">
+              <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-cyan-400 to-pink-500 flex items-center justify-center text-white shadow-lg mb-2">
+                <i data-lucide="zap" class="w-10 h-10"></i>
+              </div>
+              <p class="text-xs font-extrabold text-white">Iono (e-Nigma)</p>
+              <p class="text-[10px] text-pink-400 font-semibold">Special Illustration Trainer</p>
+              <div class="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
+                <span>🇺🇸 Inglés</span> • <span>Texturizada</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-400 line-clamp-2">
+              Carta competitiva meta actual. Pack fresh sin marcas ni micro-blanqueos.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-500">Precio unitario:</p>
+              <p class="text-lg font-black text-white">Bs. 390</p>
+            </div>
+            <button onclick="addToWishlist('Iono Trainer SAR', 390)" class="p-2.5 rounded-xl bg-slate-800 hover:bg-poke-red text-slate-300 hover:text-white transition-colors">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTA 3: Pikachu 151 Master Ball (Japonesa) -->
+        <div class="card-item jp holo-card bg-slate-900 rounded-2xl border border-slate-800 p-4 flex flex-col justify-between group hover:border-slate-700 transition-all">
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-3">
+              <span class="bg-red-500/10 text-poke-red border border-red-500/20 font-bold px-2 py-0.5 rounded">
+                Pokémon 151 JP #025
+              </span>
+              <span class="bg-emerald-950 text-emerald-400 font-bold px-2 py-0.5 rounded border border-emerald-800/40">
+                Near Mint (NM)
+              </span>
+            </div>
+
+            <div class="relative bg-slate-950 rounded-xl p-6 text-center overflow-hidden mb-4 border border-slate-800/80">
+              <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-tr from-yellow-400 to-amber-500 flex items-center justify-center text-slate-950 shadow-lg mb-2">
+                <i data-lucide="sparkles" class="w-10 h-10 text-white"></i>
+              </div>
+              <p class="text-xs font-extrabold text-white">Pikachu Master Ball</p>
+              <p class="text-[10px] text-amber-300 font-semibold">Reverse Holo Mirror Pattern</p>
+              <div class="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
+                <span>🇯🇵 Japonés</span> • <span>Exclusivo JP</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-400 line-clamp-2">
+              Patrón Master Ball completo visible. Importada directamente de Tokio.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-500">Precio unitario:</p>
+              <p class="text-lg font-black text-white">Bs. 2,150</p>
+            </div>
+            <button onclick="addToWishlist('Pikachu Master Ball JP', 2150)" class="p-2.5 rounded-xl bg-slate-800 hover:bg-poke-red text-slate-300 hover:text-white transition-colors">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- CARTA 4: Booster Bundle Sellado 151 -->
+        <div class="card-item sealed holo-card bg-slate-900 rounded-2xl border border-slate-800 p-4 flex flex-col justify-between group hover:border-slate-700 transition-all">
+          <div>
+            <div class="flex items-center justify-between text-[11px] mb-3">
+              <span class="bg-blue-500/10 text-blue-300 border border-blue-500/20 font-bold px-2 py-0.5 rounded">
+                Producto Sellado
+              </span>
+              <span class="bg-slate-800 text-slate-300 font-bold px-2 py-0.5 rounded border border-slate-700">
+                Sellado de Fábrica
+              </span>
+            </div>
+
+            <div class="relative bg-slate-950 rounded-xl p-6 text-center overflow-hidden mb-4 border border-slate-800/80">
+              <div class="w-20 h-20 mx-auto rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg mb-2">
+                <i data-lucide="package" class="w-10 h-10"></i>
+              </div>
+              <p class="text-xs font-extrabold text-white">Booster Bundle 151</p>
+              <p class="text-[10px] text-blue-400 font-semibold">Caja de 6 Sobres Sellados</p>
+              <div class="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-slate-400">
+                <span>🇺🇸 Inglés</span> • <span>Sello Pokéball Oficial</span>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-400 line-clamp-2">
+              Sin pesar ni resealar. Proviene de distribuidor oficial Pokémon USA.
+            </p>
+          </div>
+
+          <div class="pt-4 mt-3 border-t border-slate-800/80 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] text-slate-500">Precio producto:</p>
+              <p class="text-lg font-black text-white">Bs. 310</p>
+            </div>
+            <button onclick="addToWishlist('Booster Bundle 151', 310)" class="p-2.5 rounded-xl bg-slate-800 hover:bg-poke-red text-slate-300 hover:text-white transition-colors">
+              <i data-lucide="heart" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner de Escala de Graduación Explicada -->
+      <div class="mt-14 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-slate-800">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-poke-yellow mb-3 flex items-center gap-2">
+          <i data-lucide="info" class="w-4 h-4"></i>
+          Guía de Conservación Kanto Store (Estándar Internacional)
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+            <span class="font-extrabold text-emerald-400">Gem Mint (GM 10):</span>
+            <p class="text-slate-400 mt-1">Impecable, salida directa del sobre a funda protectora. Sin marcas visibles ni rayones.</p>
+          </div>
+          <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+            <span class="font-extrabold text-teal-400">Near Mint (NM 8-9):</span>
+            <p class="text-slate-400 mt-1">Excelente estado. Posible blanqueo microscópico en esquinas traseras prácticamente imperceptible.</p>
+          </div>
+          <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+            <span class="font-extrabold text-amber-400">Lightly Played (LP 6-7):</span>
+            <p class="text-slate-400 mt-1">Desgaste menor por juego en bordes o micro-arañazos en el foil. Ideal para barajas de torneo.</p>
+          </div>
+          <div class="p-3 bg-slate-950/70 rounded-xl border border-slate-800">
+            <span class="font-extrabold text-orange-400">Moderately Played (MP):</span>
+            <p class="text-slate-400 mt-1">Desgaste moderado en bordes y esquinas. Precio significativamente rebajado para jugadores.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: COMPARATIVA (POR QUÉ ELEGIR KANTO STORE VS MERCADO INFORMAL) -->
+  <section id="comparativa" class="py-20 bg-slate-950 border-t border-slate-800/80 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold bg-emerald-950/40 border border-emerald-800/40 px-3 py-1 rounded-full">
+          Seguridad y Respaldo
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          ¿Por qué coleccionar con Kanto Store?
+        </h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Analizamos los dolores de cabeza más comunes al comprar cartas Pokémon en grupos informales de WhatsApp o Facebook en Bolivia:
+        </p>
+      </div>
+
+      <!-- Tabla Comparativa Moderna Card-based -->
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Tarjeta: Mercado Informal (Redes Sociales) -->
+        <div class="bg-red-950/20 border border-red-900/30 rounded-3xl p-7 relative flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-red-900/30">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-red-900/30 flex items-center justify-center text-poke-red">
+                  <i data-lucide="x-circle" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">Grupos Informales</h3>
+                  <p class="text-xs text-slate-400">Facebook Marketplace / Grupos WhatsApp</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-bold text-red-400 bg-red-950/80 px-2.5 py-1 rounded-full border border-red-800/40">Alto Riesgo</span>
+            </div>
+
+            <ul class="mt-6 space-y-4 text-sm text-slate-300">
+              <li class="flex items-start gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-red-200">Cartas Falsas (Proxies / Ali Express):</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Sin verificación experta de textura, peso o capa interna negra (black layer).</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-red-200">Estado Subjetivo y Falsas Expectativas:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Te dicen "10/10 impecable", pero al recibirla tiene blanqueos, arañazos o dobleces.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-red-200">Riesgo de Estafa en Transferencias Previas:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Depositas el dinero y el vendedor bloquea el chat o envía sobres pesados/abiertos.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="alert-triangle" class="w-5 h-5 text-red-500 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-red-200">Búsqueda Caótica y Desorganizada:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Publicaciones perdidas en feeds sin filtros por expansión o idioma.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-red-900/30 text-xs text-red-400 text-center font-medium">
+            Sin garantías ni soporte posventa.
+          </div>
+        </div>
+
+        <!-- Tarjeta: Experiencia Kanto Store -->
+        <div class="bg-gradient-to-b from-slate-900 via-slate-900 to-poke-card border-2 border-emerald-500/50 rounded-3xl p-7 relative flex flex-col justify-between shadow-2xl glow-yellow">
+          
+          <!-- Badge Flotante "Recomendado" -->
+          <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 font-black text-xs px-3.5 py-1 rounded-full shadow-lg">
+            ✓ 100% TRANSPARENTE
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+                  <i data-lucide="check-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white">Kanto Store Bolivia</h3>
+                  <p class="text-xs text-slate-400">Plataforma Especializada y Centralizada</p>
+                </div>
+              </div>
+              <span class="text-[11px] font-bold text-emerald-300 bg-emerald-950/80 px-2.5 py-1 rounded-full border border-emerald-800/40">Seguridad Total</span>
+            </div>
+
+            <ul class="mt-6 space-y-4 text-sm text-slate-200">
+              <li class="flex items-start gap-3">
+                <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-white">Garantía de Autenticidad Estricta:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Inspección minuciosa de holo patterns, textura oficial y pruebas de autenticidad.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="camera" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-white">Fotografías del Ejemplar Exacto:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Lo que ves en la ficha técnica con luz neutra es exactamente la carta que recibes.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="truck" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-white">Embalaje Blindado (Sleeve + Toploader + Cartón):</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Protección contra doblados y humedad en envíos a cualquier departamento de Bolivia.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="qr-code" class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5"></i>
+                <div>
+                  <strong class="text-white">Pagos Seguros y Transacción Rastreable:</strong>
+                  <p class="text-xs text-slate-400 mt-0.5">Comprobante digital inmediato y seguimiento de envío con guía de transporte.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-slate-800 text-xs text-emerald-400 text-center font-bold">
+            Respaldo de proyecto académico universitario formal (USFX).
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: WISHLIST Y RECORDATORIOS INTERACTIVOS -->
+  <section id="wishlist-section" class="py-16 bg-slate-900/60 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-poke-card via-slate-900 to-slate-950 rounded-3xl p-8 sm:p-12 border border-slate-800 flex flex-col lg:flex-row items-center justify-between gap-8">
+        
+        <div class="space-y-3 max-w-xl text-center lg:text-left">
+          <span class="text-xs font-bold text-poke-yellow uppercase tracking-widest flex items-center justify-center lg:justify-start gap-1.5">
+            <i data-lucide="bell" class="w-3.5 h-3.5"></i> Notificaciones de Reposición
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">
+            ¿Buscas una carta específica que no está en stock?
+          </h2>
+          <p class="text-slate-400 text-sm">
+            Agrégala a tu <strong>Lista de Deseos</strong>. Nuestros algoritmos rastrean nuevos lotes importados y te enviarán un mensaje directo por WhatsApp en cuanto ingrese a nuestro almacén en Bolivia.
+          </p>
+        </div>
+
+        <div class="w-full lg:w-auto flex flex-col sm:flex-row gap-3">
+          <input type="text" id="wishlist-input" placeholder="Ej: Umbreon VMAX Alt Art #215" class="px-5 py-3.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-poke-yellow w-full sm:w-80">
+          <button onclick="addCustomWishlist()" class="px-6 py-3.5 rounded-xl bg-poke-yellow hover:bg-amber-400 text-slate-950 font-bold text-sm shrink-0 flex items-center justify-center gap-2 transition-all">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Pedir Carta</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL DE LISTA DE DESEOS (WISHLIST INTERACTIVA) -->
+  <div id="wishlist-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-md w-full p-6 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <i data-lucide="bookmark" class="w-5 h-5 text-poke-yellow"></i>
+          <h3 class="text-lg font-bold text-white">Tu Lista de Deseos (Wishlist)</h3>
+        </div>
+        <button onclick="toggleWishlistModal()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Lista de elementos -->
+      <div id="wishlist-items" class="py-4 space-y-3 max-h-64 overflow-y-auto pr-1">
+        <!-- Renderizado dinámico vía JavaScript -->
+      </div>
+
+      <div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+        <div>
+          <p class="text-xs text-slate-400">Total Estimado:</p>
+          <p id="wishlist-total" class="text-lg font-black text-white">Bs. 0</p>
+        </div>
+        <button onclick="simulateOrderCheckout()" class="px-5 py-2.5 bg-poke-red hover:bg-red-600 rounded-xl text-white font-bold text-xs flex items-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Consultar por WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION FLOTANTE -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-emerald-500/50 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <div>
+      <p id="toast-title" class="text-xs font-bold text-white">¡Actualizado!</p>
+      <p id="toast-msg" class="text-[11px] text-slate-400">Carta añadida a tu lista de deseos.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6: PIE DE PÁGINA (FOOTER) CON AVISO ACADÉMICO OBLIGATORIO -->
+  <footer class="bg-slate-950 border-t border-slate-800/80 mt-auto pt-16 pb-12 text-slate-400 text-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Fila Superior del Footer -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-12 border-b border-slate-800/80">
+        
+        <!-- Identidad y Marca -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-poke-red flex items-center justify-center text-white font-black text-sm">
+              K
+            </div>
+            <span class="text-xl font-extrabold text-white tracking-tight">KANTO<span class="text-poke-red">.STORE</span></span>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+            Plataforma especializada en compra, venta y preservación de cartas coleccionables Pokémon Trading Card Game en Bolivia.
+          </p>
+          <div class="flex items-center gap-3 text-slate-400">
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:text-poke-yellow flex items-center justify-center transition-colors" title="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:text-emerald-400 flex items-center justify-center transition-colors" title="WhatsApp">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 hover:text-blue-400 flex items-center justify-center transition-colors" title="Discord">
+              <i data-lucide="disc" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Catálogo</h4>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="#catalogo" class="hover:text-poke-yellow transition-colors">Singles en Inglés</a></li>
+            <li><a href="#catalogo" class="hover:text-poke-yellow transition-colors">Singles en Japonés</a></li>
+            <li><a href="#catalogo" class="hover:text-poke-yellow transition-colors">Elite Trainer Boxes (ETB)</a></li>
+            <li><a href="#catalogo" class="hover:text-poke-yellow transition-colors">Booster Boxes Selladas</a></li>
+          </ul>
+        </div>
+
+        <!-- Soporte y Confianza -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Servicio</h4>
+          <ul class="space-y-2.5 text-xs">
+            <li><a href="#caracteristicas" class="hover:text-poke-yellow transition-colors">Criterios de Graduación</a></li>
+            <li><a href="#wishlist-section" class="hover:text-poke-yellow transition-colors">Sistema de Wishlist</a></li>
+            <li><a href="#comparativa" class="hover:text-poke-yellow transition-colors">Métodos de Envío Nacional</a></li>
+            <li><a href="#" class="hover:text-poke-yellow transition-colors">Pago QR Simple Bolivia</a></li>
+          </ul>
+        </div>
+
+        <!-- Cobertura en Bolivia -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Envíos Nacionales</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Sucre, La Paz, Cochabamba, Santa Cruz, Oruro, Potosí, Tarija, Beni y Pando. Embalaje profesional con sleeve rígido.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- AVISO ACADÉMICO INSTITUCIONAL (REQUISITO ESPECÍFICO) -->
+      <div class="my-8 p-5 rounded-2xl bg-slate-900/50 border border-slate-800/80 text-xs">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-blue-900/40 border border-blue-700/50 flex items-center justify-center text-blue-400 shrink-0">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <p class="font-bold text-white">Proyecto Académico Universitario</p>
+              <p class="text-slate-400 text-[11px]">
+                Universidad Mayor, Real y Pontificia de San Francisco Xavier de Chuquisaca (USFX)
+              </p>
+            </div>
+          </div>
+          <div class="text-[11px] text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+            Carrera de Ingeniería de Sistemas / Ingeniería de Software
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila Inferior: Copyright & Disclaimer Pokémon -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-400">
+        <p>© 2026 Kanto Store. Todos los derechos reservados. Desarrollado con fines educativos.</p>
+        <p class="text-center sm:text-right max-w-md">
+          Pokémon y sus marcas derivadas son propiedad de Nintendo, Creatures Inc. y The Pokémon Company. Esta landing page es una simulación de e-commerce académico.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT MODERNO (LÓGICA INTERACTIVA) -->
+  <script>
+    // Inicializar Lucide Icons
+    lucide.createIcons();
+
+    // Estado local de la Lista de Deseos (Wishlist)
+    let wishlist = [
+      { name: 'Charizard ex #223 (151 SAR)', price: 840 },
+      { name: 'Iono Trainer Full Art', price: 390 },
+      { name: 'Booster Bundle 151', price: 310 }
+    ];
+
+    // Render inicial de Wishlist
+    updateWishlistUI();
+
+    // Función para alternar Menú Móvil
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Filtros de Cartas (Todas, SAR, Sellados, JP)
+    function filterCards(category) {
+      const cards = document.querySelectorAll('.card-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      // Actualizar estilo activo en botones
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-poke-red', 'text-white');
+        btn.classList.add('text-slate-400');
+      });
+      event.currentTarget.classList.add('bg-poke-red', 'text-white');
+      event.currentTarget.classList.remove('text-slate-400');
+
+      // Filtrar elementos del grid
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal de Wishlist
+    function toggleWishlistModal() {
+      const modal = document.getElementById('wishlist-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    // Añadir a Wishlist desde botones de cartas
+    function addToWishlist(cardName, cardPrice) {
+      const exists = wishlist.some(item => item.name === cardName);
+      if (exists) {
+        showToast('Ya en Wishlist', `${cardName} ya está en tu lista de seguimiento.`);
+        return;
+      }
+
+      wishlist.push({ name: cardName, price: cardPrice });
+      updateWishlistUI();
+      showToast('¡Agregada a Wishlist!', `${cardName} agregada con éxito.`);
+    }
+
+    // Añadir carta personalizada desde el input
+    function addCustomWishlist() {
+      const input = document.getElementById('wishlist-input');
+      const value = input.value.trim();
+
+      if (!value) {
+        showToast('Campo vacío', 'Por favor escribe el nombre de la carta que buscas.');
+        return;
+      }
+
+      wishlist.push({ name: value, price: 0 });
+      input.value = '';
+      updateWishlistUI();
+      showToast('¡Búsqueda Registrada!', `Te avisaremos cuando "${value}" esté en stock.`);
+    }
+
+    // Eliminar de Wishlist
+    function removeFromWishlist(index) {
+      wishlist.splice(index, 1);
+      updateWishlistUI();
+      showToast('Eliminada', 'Carta removida de tu lista.');
+    }
+
+    // Actualizar Contador y Lista en el DOM
+    function updateWishlistUI() {
+      const badge = document.getElementById('wishlist-badge');
+      const container = document.getElementById('wishlist-items');
+      const totalEl = document.getElementById('wishlist-total');
+
+      badge.textContent = wishlist.length;
+
+      if (wishlist.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-6 text-slate-500 text-xs">
+            <i data-lucide="inbox" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+            Tu lista de deseos está vacía por ahora.
+          </div>
+        `;
+        totalEl.textContent = 'Bs. 0';
+        lucide.createIcons();
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = wishlist.map((item, index) => {
+        total += item.price;
+        return `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+            <div class="truncate pr-2">
+              <p class="font-bold text-white truncate">${item.name}</p>
+              <p class="text-[11px] text-poke-yellow font-medium">${item.price > 0 ? `Bs. ${item.price}` : 'Precio por cotizar'}</p>
+            </div>
+            <button onclick="removeFromWishlist(${index})" class="text-slate-500 hover:text-red-400 p-1">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      totalEl.textContent = `Bs. ${total.toLocaleString()}`;
+      lucide.createIcons();
+    }
+
+    // Notificación Toast
+    function showToast(title, message) {
+      const toast = document.getElementById('toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastMsg = document.getElementById('toast-msg');
+
+      toastTitle.textContent = title;
+      toastMsg.textContent = message;
+
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+
+    // Simular Pedido / WhatsApp
+    function simulateOrderCheckout() {
+      if (wishlist.length === 0) {
+        showToast('Lista vacía', 'Agrega cartas a tu lista antes de consultar.');
+        return;
+      }
+      const itemNames = wishlist.map(i => `• ${i.name}`).join('%0A');
+      const text = `Hola Kanto Store Bolivia, me interesa consultar disponibilidad de mi Wishlist:%0A${itemNames}`;
+      window.open(`https://wa.me/59170000000?text=${text}`, '_blank');
+    }
+  </script>
+</body>
+</html>
